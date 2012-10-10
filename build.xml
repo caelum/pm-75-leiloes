@@ -1,0 +1,32 @@
+<project name="pm-75-leiloes" default="gerar-jar">
+
+	<path id="tests.classpath" path=".">
+		<fileset dir="lib/">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement path="classes/" />
+	</path>
+	
+	<target name="compilar">
+		<mkdir dir="classes/"/>
+		<mkdir dir="classes-teste/"/>
+		<javac destdir="classes/" srcdir="src/main/" debug="true" encoding="UTF-8" />
+		<javac destdir="classes-teste/" srcdir="src/teste/" classpathref="tests.classpath" debug="true" encoding="UTF-8" />
+	</target>
+	
+	<target name="executar-os-testes" depends="compilar">
+		<junit haltonfailure="true">
+			<classpath location="classes-teste/" />
+			<classpath refid="tests.classpath" />
+			<batchtest todir="${artifacts.dir}/reports">
+				<fileset dir="classes-teste/" >
+					<include name="**/*Test.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	
+	<target name="gerar-jar" depends="executar-os-testes">
+		<jar destfile="pm-75-leiloes.jar" basedir="classes/" />
+	</target>
+</project>
