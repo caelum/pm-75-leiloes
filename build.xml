@@ -1,32 +1,35 @@
 <project name="pm-75-leiloes" default="gerar-jar">
+	<property name="build.dir" value="target"/>
 
 	<path id="tests.classpath" path=".">
 		<fileset dir="lib/">
 			<include name="*.jar" />
 		</fileset>
-		<pathelement path="classes/" />
+		<pathelement path="${build.dir}/classes/" />
 	</path>
 	
 	<target name="compilar">
-		<mkdir dir="classes/"/>
-		<mkdir dir="classes-teste/"/>
-		<javac destdir="classes/" srcdir="src/main/" debug="true" encoding="UTF-8" />
-		<javac destdir="classes-teste/" srcdir="src/teste/" classpathref="tests.classpath" debug="true" encoding="UTF-8" />
+		<mkdir dir="${build.dir}/classes/"/>
+		<mkdir dir="${build.dir}/classes-teste/"/>
+		<javac destdir="${build.dir}/classes/" srcdir="src/main/" debug="true" encoding="UTF-8" />
+		<javac destdir="${build.dir}/classes-teste/" srcdir="src/test/" classpathref="tests.classpath" debug="true" encoding="UTF-8" />
 	</target>
 	
 	<target name="executar-os-testes" depends="compilar">
-		<junit haltonfailure="true">
-			<classpath location="classes-teste/" />
+		<mkdir dir="${build.dir}/reports" />
+		<junit haltonfailure="true" showoutput="true" haltonerror="true" printsummary="true">
+			<formatter type="plain" />
+			<classpath location="${build.dir}/classes-teste/" />
 			<classpath refid="tests.classpath" />
-			<batchtest todir="${artifacts.dir}/reports">
-				<fileset dir="classes-teste/" >
-					<include name="**/*Test.class" />
+			<batchtest todir="${build.dir}/reports">
+				<fileset dir="src/test" >
+					<include name="**/*Test.java" />
 				</fileset>
 			</batchtest>
 		</junit>
 	</target>
 	
 	<target name="gerar-jar" depends="executar-os-testes">
-		<jar destfile="pm-75-leiloes.jar" basedir="classes/" />
+		<jar destfile="pm-75-leiloes.jar" basedir="${build.dir}/classes/" />
 	</target>
 </project>
