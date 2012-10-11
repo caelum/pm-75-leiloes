@@ -8,7 +8,7 @@ import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
 
 public class AvaliadorTest {
-
+ 
 	@Test
 	public void deveEntenderLancesEmOrdemCrescente() {
 		// cenario: 3 lances em ordem crescente
