@@ -1,0 +1,5 @@
+Testsuite: br.com.caelum.leilao.servico.AvaliadorTest
+Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.017 sec
+
+Testcase: deveCalcularAMedia took 0.004 sec
+Testcase: deveEntenderLancesEmOrdemCrescente took 0 sec
