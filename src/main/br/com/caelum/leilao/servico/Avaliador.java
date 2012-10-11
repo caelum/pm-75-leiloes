@@ -32,4 +32,4 @@ class Avaliador {
 	public double getMedia() {
 		return media;
 	}
-}
+} 
