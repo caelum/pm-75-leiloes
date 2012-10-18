@@ -1,8 +1,12 @@
-<project name="pm-75-leiloes" default="gerar-jar">
+<project name="pm-75-leiloes" default="relatorio-jacoco" xmlns:jacoco="antlib:org.jacoco.ant">
 	<property name="build.dir" value="target"/>
 
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+        <classpath path="lib/test/jacocoant.jar"/>
+    </taskdef>
+	
 	<path id="tests.classpath" path=".">
-		<fileset dir="lib/">
+		<fileset dir="lib/test">
 			<include name="*.jar" />
 		</fileset>
 		<pathelement path="${build.dir}/classes/" />
@@ -17,17 +21,40 @@
 	
 	<target name="executar-os-testes" depends="compilar">
 		<mkdir dir="${build.dir}/reports" />
-		<junit haltonfailure="true" showoutput="true" haltonerror="true" printsummary="true">
-			<formatter type="plain" />
-			<classpath location="${build.dir}/classes-teste/" />
-			<classpath refid="tests.classpath" />
-			<batchtest todir="${build.dir}/reports">
-				<fileset dir="src/test" >
-					<include name="**/*Test.java" />
-				</fileset>
-			</batchtest>
-		</junit>
+		<jacoco:coverage>
+			<junit haltonfailure="true" showoutput="true" haltonerror="true" printsummary="true" fork="true" forkmode="once">
+				<formatter type="plain" />
+				<classpath location="${build.dir}/classes-teste/" />
+				<classpath refid="tests.classpath" />
+				<batchtest fork="yes" todir="${build.dir}/reports">
+					<fileset dir="src/test" >
+						<include name="**/*Test.java" />
+					</fileset>
+				</batchtest>
+			</junit>
+		</jacoco:coverage>
 	</target>
+	
+	<target name="relatorio-jacoco" depends="executar-os-testes">
+		<mkdir dir="${build.dir}/jacoco"/>
+		<mkdir dir="${build.dir}/jacoco/report"/>
+			<jacoco:report>
+				<executiondata>
+					<file name="jacoco.exec" />
+				</executiondata>
+
+				<structure name="pm-75-leiloes">
+					<classfiles>
+						<fileset dir="${build.dir}"/>
+					</classfiles>
+					<sourcefiles encoding="UTF-8">
+						<fileset dir="src/main" />
+					</sourcefiles>
+				</structure>
+
+				<html destdir="${build.dir}/jacoco/report" />
+			</jacoco:report>
+		</target>
 	
 	<target name="gerar-jar" depends="executar-os-testes">
 		<jar destfile="pm-75-leiloes.jar" basedir="${build.dir}/classes/" />
