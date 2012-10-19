@@ -41,7 +41,7 @@
 		<mkdir dir="${build.dir}/jacoco/report"/>
 			<jacoco:report>
 				<executiondata>
-					<file name="jacoco.exec" />
+					<file name="${basedir}/jacoco.exec" />
 				</executiondata>
 
 				<structure name="pm-75-leiloes">
