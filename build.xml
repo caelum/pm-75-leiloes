@@ -31,6 +31,7 @@
 						<include name="**/*Test.java" />
 					</fileset>
 				</batchtest>
+				<formatter type="brief" usefile="false" />
 			</junit>
 		</jacoco:coverage>
 	</target>
