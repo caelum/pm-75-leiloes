@@ -3,7 +3,7 @@ package br.com.caelum.leilao.servico;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 
-class Avaliador {
+class Avaliador {   
 
 	private double maiorDeTodos = Double.NEGATIVE_INFINITY;
 	private double menorDeTodos = Double.POSITIVE_INFINITY;
