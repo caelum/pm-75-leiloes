@@ -29,6 +29,7 @@ class Avaliador {
 		return menorDeTodos;
 	}
 
+
 	public double getMedia() {
 		return media;
 	}
