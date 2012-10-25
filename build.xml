@@ -21,7 +21,7 @@
 	
 	<target name="executar-os-testes" depends="compilar">
 		<mkdir dir="${build.dir}/reports" />
-		<jacoco:coverage>
+		<jacoco:coverage excludes="**/*Test.java">
 			<junit haltonfailure="true" showoutput="true" haltonerror="true" printsummary="true" fork="true" forkmode="once">
 				<formatter type="plain" />
 				<classpath location="${build.dir}/classes-teste/" />
@@ -41,12 +41,14 @@
 		<mkdir dir="${build.dir}/jacoco/report"/>
 			<jacoco:report>
 				<executiondata>
-					<file name="${basedir}/jacoco.exec" />
+					<file name="${basedir}/jacoco.exec"/>
 				</executiondata>
 
 				<structure name="pm-75-leiloes">
 					<classfiles>
-						<fileset dir="${build.dir}"/>
+						<fileset dir="${build.dir}">
+							<exclude name="**/controller/**/*"/>
+						</fileset>
 					</classfiles>
 					<sourcefiles encoding="UTF-8">
 						<fileset dir="src/main" />
@@ -60,4 +62,4 @@
 	<target name="gerar-jar" depends="executar-os-testes">
 		<jar destfile="pm-75-leiloes.jar" basedir="${build.dir}/classes/" />
 	</target>
-</project>
+</project>	
