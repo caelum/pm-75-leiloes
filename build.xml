@@ -29,11 +29,29 @@
 				<batchtest fork="yes" todir="${build.dir}/reports">
 					<fileset dir="src/test" >
 						<include name="**/*Test.java" />
+						<exclude name="**/IntegracaoTest.java" />						
 					</fileset>
 				</batchtest>
 				<formatter type="brief" usefile="false" />
 			</junit>
 		</jacoco:coverage>
+	</target>
+	
+	<target name="executar-os-testes-de-integracao" depends="compilar">
+		
+		<!-- levantar o tom cat pra subir aqui? -->
+		
+		<junit haltonfailure="true" showoutput="true" haltonerror="true" printsummary="true" fork="true" forkmode="once">
+			<formatter type="plain" />
+			<classpath location="${build.dir}/classes-teste/" />
+			<classpath refid="tests.classpath" />
+			<batchtest>
+				<fileset dir="src/test" >
+					<include name="**/IntegracaoTest.java" />						
+				</fileset>
+			</batchtest>
+			<formatter type="brief" usefile="false" />
+		</junit>
 	</target>
 	
 	<target name="relatorio-jacoco" depends="executar-os-testes">
