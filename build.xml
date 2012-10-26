@@ -12,16 +12,22 @@
 		<pathelement path="${build.dir}/classes/" />
 	</path>
 	
+	<path id="libs.classpath" path=".">
+		<fileset dir="WebContent/WEB-INF/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
 	<target name="compilar">
 		<mkdir dir="${build.dir}/classes/"/>
 		<mkdir dir="${build.dir}/classes-teste/"/>
-		<javac destdir="${build.dir}/classes/" srcdir="src/main/" debug="true" encoding="UTF-8" />
+		<javac destdir="${build.dir}/classes/" srcdir="src/main/" classpathref="libs.classpath" debug="true" encoding="UTF-8" />
 		<javac destdir="${build.dir}/classes-teste/" srcdir="src/test/" classpathref="tests.classpath" debug="true" encoding="UTF-8" />
 	</target>
 	
 	<target name="executar-os-testes" depends="compilar">
 		<mkdir dir="${build.dir}/reports" />
-		<jacoco:coverage excludes="**/*Test.java">
+		<jacoco:coverage excludes="**/IntegracaoTest.java">
 			<junit haltonfailure="true" showoutput="true" haltonerror="true" printsummary="true" fork="true" forkmode="once">
 				<formatter type="plain" />
 				<classpath location="${build.dir}/classes-teste/" />
@@ -37,14 +43,12 @@
 		</jacoco:coverage>
 	</target>
 	
-	<target name="executar-os-testes-de-integracao" depends="compilar">
-		
-		<!-- levantar o tom cat pra subir aqui? -->
-		
+	<target name="executar-os-testes-de-integracao" depends="levanta-servidor-tomcat">
 		<junit haltonfailure="true" showoutput="true" haltonerror="true" printsummary="true" fork="true" forkmode="once">
 			<formatter type="plain" />
 			<classpath location="${build.dir}/classes-teste/" />
 			<classpath refid="tests.classpath" />
+			
 			<batchtest>
 				<fileset dir="src/test" >
 					<include name="**/IntegracaoTest.java" />						
@@ -52,6 +56,7 @@
 			</batchtest>
 			<formatter type="brief" usefile="false" />
 		</junit>
+		<antcall target="derruba-servidor-tomcat"/>
 	</target>
 	
 	<target name="relatorio-jacoco" depends="executar-os-testes">
@@ -61,12 +66,9 @@
 				<executiondata>
 					<file name="${basedir}/jacoco.exec"/>
 				</executiondata>
-
 				<structure name="pm-75-leiloes">
-					<classfiles>
-						<fileset dir="${build.dir}">
-							<exclude name="**/controller/**/*"/>
-						</fileset>
+					 <classfiles>
+				        <fileset dir="${build.dir}"/>
 					</classfiles>
 					<sourcefiles encoding="UTF-8">
 						<fileset dir="src/main" />
@@ -77,7 +79,46 @@
 			</jacoco:report>
 		</target>
 	
+	<property name="apache.tomcat7" value="apache-tomcat-7.0.32"/>
+	
+	<target name="gera-war" depends="executar-os-testes">
+		<war destfile="${apache.tomcat7}/webapps/pm-75-leiloes.war">
+			<classes dir="${build.dir}/classes"/>
+			<zipfileset dir="WebContent" />
+		</war>
+	</target>
+	
+	<target name="levanta-servidor-tomcat" depends="derruba-servidor-tomcat, gera-war">
+        <java classname="org.apache.catalina.startup.Bootstrap" fork="true" spawn="true">
+            <classpath path="${apache.tomcat7}/bin/bootstrap.jar:${apache.tomcat7}/bin/tomcat-juli.jar"/>
+            <jvmarg value="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"/>
+            <jvmarg value="-Djava.util.logging.config.file=${apache.tomcat7}/conf/logging.properties"/>
+            <jvmarg value="-Dcatalina.home=${apache.tomcat7}"/>
+            <jvmarg value="-Dcatalina.base=${apache.tomcat7}"/>
+            <jvmarg value="-Djava.io.tmpdir=${apache.tomcat7}/temp"/>
+            <arg line="start"/>
+        </java>
+		
+		<waitfor maxwait="2" maxwaitunit="minute" checkevery="3" checkeveryunit="second" timeoutproperty="waittimedout">
+			<http url="http://localhost:7070/pm-75-leiloes/" />
+		</waitfor>
+		<fail if="waittimedout" message="Server is not running or returned an error."/>
+    </target>
+	
+	<target name="derruba-servidor-tomcat">
+		<java classname="org.apache.catalina.startup.Bootstrap" fork="true">
+            <classpath path="${apache.tomcat7}/bin/bootstrap.jar:${apache.tomcat7}/bin/tomcat-juli.jar"/>
+            <jvmarg value="-Dcatalina.home=${apache.tomcat7}"/>
+            <arg line="stop"/>
+        </java>
+	</target>
+	
 	<target name="gerar-jar" depends="executar-os-testes">
 		<jar destfile="pm-75-leiloes.jar" basedir="${build.dir}/classes/" />
 	</target>
+	
+	<target name="clean">
+		<delete dir="${build.dir}"/>	
+	</target>
+	
 </project>	

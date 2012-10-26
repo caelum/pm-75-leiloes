@@ -3,7 +3,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/controller"/>
         <property name="context-root" value="pm-75-leiloes"/>
         <property name="java-output-path" value="/pm-75-leiloes/bin"/>
     </wb-module>
