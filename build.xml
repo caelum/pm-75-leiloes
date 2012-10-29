@@ -87,8 +87,17 @@
 			<zipfileset dir="WebContent" />
 		</war>
 	</target>
+
+	<target name="prepara-servidor-tomcat-7">
+		<delete dir="apache-tomcat-7.0.32"/>
+		<delete dir="apache-tomcat-7.0.32.zip"/>
+		<get dest="." src="http://ftp.unicamp.br/pub/apache/tomcat/tomcat-7/v7.0.32/bin/apache-tomcat-7.0.32.zip"/>
+		<unzip dest="." src="apache-tomcat-7.0.32.zip"/>
+		<delete dir="apache-tomcat-7.0.32/conf/server.xml"/>
+		<copy file="server.xml" todir="apache-tomcat-7.0.32/conf/"/>
+	</target>
 	
-	<target name="levanta-servidor-tomcat" depends="derruba-servidor-tomcat, gera-war">
+	<target name="levanta-servidor-tomcat" depends="derruba-servidor-tomcat,prepara-servidor-tomcat-7, gera-war">
         <java classname="org.apache.catalina.startup.Bootstrap" fork="true" spawn="true">
             <classpath path="${apache.tomcat7}/bin/bootstrap.jar:${apache.tomcat7}/bin/tomcat-juli.jar"/>
             <jvmarg value="-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"/>
