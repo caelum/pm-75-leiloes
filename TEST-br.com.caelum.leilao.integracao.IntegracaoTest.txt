@@ -1,0 +1,4 @@
+Testsuite: br.com.caelum.leilao.integracao.IntegracaoTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 7.465 sec
+
+Testcase: deveLocalizarAMensagemDeBoasVindasDoProjeto took 7.455 sec
