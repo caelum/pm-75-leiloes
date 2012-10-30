@@ -27,7 +27,7 @@
 	
 	<target name="executar-os-testes" depends="compilar">
 		<mkdir dir="${build.dir}/reports" />
-		<jacoco:coverage excludes="**/IntegracaoTest.java">
+		<jacoco:coverage excludes="**/BoasVindasTest.java">
 			<junit haltonfailure="true" showoutput="true" haltonerror="true" printsummary="true" fork="true" forkmode="once">
 				<formatter type="plain" />
 				<classpath location="${build.dir}/classes-teste/" />
@@ -35,7 +35,8 @@
 				<batchtest fork="yes" todir="${build.dir}/reports">
 					<fileset dir="src/test" >
 						<include name="**/*Test.java" />
-						<exclude name="**/IntegracaoTest.java" />						
+						<exclude name="**/BoasVindasTest.java" />						
+						<exclude name="**/IntegrationTest.java" />												
 					</fileset>
 				</batchtest>
 				<formatter type="brief" usefile="false" />
@@ -55,7 +56,7 @@
 			
 			<batchtest>
 				<fileset dir="src/test">
-					<include name="**/IntegracaoTest.java" />						
+					<include name="**/BoasVindasTest.java" />						
 				</fileset>
 			</batchtest>
 			<formatter type="brief" usefile="false" />

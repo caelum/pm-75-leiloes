@@ -1,0 +1,96 @@
+[0.000][INFO]:      ChromeDriver 23.0.1240.0 /home/Rodrigo/workspace/pm-75-leiloes/ChromeDrive/chromedriverLINUX
+[0.103][FINE]:      Initializing session with capabilities {
+   "browserName": "chrome",
+   "chrome.switches": [  ],
+   "chromeOptions": {
+      "args": [  ],
+      "extensions": [  ]
+   },
+   "platform": "ANY",
+   "version": ""
+}
+
+[0.103][INFO]:      Launching chrome: /opt/google/chrome/google-chrome --enable-logging --log-level=1 --disable-hang-monitor --disable-prompt-on-repost --dom-automation --full-memory-crash-report --no-default-browser-check --no-first-run --disable-background-networking --disable-sync --disable-translate --disable-web-resources --safebrowsing-disable-auto-update --safebrowsing-disable-download-protection --disable-client-side-phishing-detection --disable-component-update --disable-default-apps --password-store=basic --ignore-certificate-errors about:blank
+[0.665][INFO]:      Connected to Chrome successfully. Version: 22.0.1229.94
+[0.706][FINE]:      Command received (/session/8436a6abc2419e49f3a5c3df37b77b36)
+[0.707][FINE]:      Command finished (/session/8436a6abc2419e49f3a5c3df37b77b36) with response {
+   "sessionId": "8436a6abc2419e49f3a5c3df37b77b36",
+   "status": 0,
+   "value": {
+      "acceptSslCerts": false,
+      "applicationCacheEnabled": false,
+      "browserConnectionEnabled": false,
+      "browserName": "chrome",
+      "chrome.chromedriverVersion": "23.0.1240.0",
+      "chrome.nativeEvents": false,
+      "cssSelectorsEnabled": true,
+      "databaseEnabled": false,
+      "handlesAlerts": true,
+      "javascriptEnabled": true,
+      "locationContextEnabled": false,
+      "nativeEvents": true,
+      "platform": "linux",
+      "rotatable": false,
+      "takesScreenshot": true,
+      "version": "22.0.1229.94",
+      "webStorageEnabled": true
+   }
+}
+
+[0.723][FINE]:      Command received (/session/8436a6abc2419e49f3a5c3df37b77b36/url) with params {
+   "url": "http://localhost:7070/pm-75-leiloes/"
+}
+
+[0.723][FINER]:     Waiting for all views to stop loading...
+[0.723][FINER]:     Done waiting for all views to stop loading
+[2.033][FINER]:     Waiting for all views to stop loading...
+[2.035][FINER]:     Done waiting for all views to stop loading
+[2.035][FINE]:      Command finished (/session/8436a6abc2419e49f3a5c3df37b77b36/url) with response {
+   "sessionId": "8436a6abc2419e49f3a5c3df37b77b36",
+   "status": 0,
+   "value": {
+
+   }
+}
+
+[2.045][FINE]:      Command received (/session/8436a6abc2419e49f3a5c3df37b77b36/element) with params {
+   "using": "id",
+   "value": "mensagem"
+}
+
+[2.045][FINER]:     Waiting for all views to stop loading...
+[2.046][FINER]:     Done waiting for all views to stop loading
+[2.071][FINER]:     Waiting for all views to stop loading...
+[2.072][FINER]:     Done waiting for all views to stop loading
+[2.072][FINE]:      Command finished (/session/8436a6abc2419e49f3a5c3df37b77b36/element) with response {
+   "sessionId": "8436a6abc2419e49f3a5c3df37b77b36",
+   "status": 0,
+   "value": {
+      "ELEMENT": ":wdc:1351620307656"
+   }
+}
+
+[2.087][FINE]:      Command received (/session/8436a6abc2419e49f3a5c3df37b77b36/element/:wdc:1351620307656/displayed)
+[2.087][FINER]:     Waiting for all views to stop loading...
+[2.088][FINER]:     Done waiting for all views to stop loading
+[2.106][FINER]:     Waiting for all views to stop loading...
+[2.107][FINER]:     Done waiting for all views to stop loading
+[2.107][FINE]:      Command finished (/session/8436a6abc2419e49f3a5c3df37b77b36/element/:wdc:1351620307656/displayed) with response {
+   "sessionId": "8436a6abc2419e49f3a5c3df37b77b36",
+   "status": 0,
+   "value": true
+}
+
+[2.112][FINE]:      Command received (/session/8436a6abc2419e49f3a5c3df37b77b36/element/:wdc:1351620307656/text)
+[2.112][FINER]:     Waiting for all views to stop loading...
+[2.112][FINER]:     Done waiting for all views to stop loading
+[2.156][FINER]:     Waiting for all views to stop loading...
+[2.157][FINER]:     Done waiting for all views to stop loading
+[2.157][FINE]:      Command finished (/session/8436a6abc2419e49f3a5c3df37b77b36/element/:wdc:1351620307656/text) with response {
+   "sessionId": "8436a6abc2419e49f3a5c3df37b77b36",
+   "status": 0,
+   "value": "Aplica\u00E7\u00E3o do curso pm-75-leiloes da Caelum!"
+}
+
+[2.162][FINE]:      Command received (/session/8436a6abc2419e49f3a5c3df37b77b36/window)
+[3.103][INFO]:      Chrome shutdown
