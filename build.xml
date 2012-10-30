@@ -44,13 +44,17 @@
 	</target>
 	
 	<target name="executar-os-testes-de-integracao" depends="levanta-servidor-tomcat">
+		<property environment="env"/>
+		<property name="browser" value="${env.browser}"/>
+		
 		<junit haltonfailure="true" showoutput="true" haltonerror="true" printsummary="true" fork="true" forkmode="once">
+			<sysproperty key="browser_driver" value="${browser}"/>
 			<formatter type="plain" />
 			<classpath location="${build.dir}/classes-teste/" />
 			<classpath refid="tests.classpath" />
 			
 			<batchtest>
-				<fileset dir="src/test" >
+				<fileset dir="src/test">
 					<include name="**/IntegracaoTest.java" />						
 				</fileset>
 			</batchtest>
