@@ -19,12 +19,10 @@ public class BoasVindasTest extends IntegrationTest {
 	
 	@Test
 	public void deveLocalizarAMensagemDeBoasVindasDoProjeto(){
-System.out.println("bla");
 		driver.get("http://localhost:7070/pm-75-leiloes/");
 		WebElement mensagaem = driver.findElement(By.id("mensagem"));
 		assertTrue(mensagaem.isDisplayed());
-		assertTrue(mensagaem.getText().equals("Aplicação do curso pm-75-leiloes da Caelum!"));
-assertTrue(false);
+		assertTrue(mensagaem.getText().equals("Alicação do curso pm-75-leiloes da Caelum!"));
 	}
 	
 	@After
