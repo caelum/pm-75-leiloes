@@ -19,7 +19,7 @@ public class BoasVindasTest extends IntegrationTest {
 	
 	@Test
 	public void deveLocalizarAMensagemDeBoasVindasDoProjeto(){
-System.out.printl(' bla');
+System.out.println("bla");
 		driver.get("http://localhost:7070/pm-75-leiloes/");
 		WebElement mensagaem = driver.findElement(By.id("mensagem"));
 		assertTrue(mensagaem.isDisplayed());
