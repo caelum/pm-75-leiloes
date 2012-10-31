@@ -24,6 +24,7 @@ System.out.println("bla");
 		WebElement mensagaem = driver.findElement(By.id("mensagem"));
 		assertTrue(mensagaem.isDisplayed());
 		assertTrue(mensagaem.getText().equals("Aplicação do curso pm-75-leiloes da Caelum!"));
+assertTrue(false);
 	}
 	
 	@After
