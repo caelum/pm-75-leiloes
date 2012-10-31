@@ -27,11 +27,9 @@ public class BoasVindasTest extends IntegrationTest {
 	@Test
 	public void deveLocalizarAMensagemDeBoasVindasDoProjeto() throws IOException{
 		driver.get("http://localhost:7070/pm-75-leiloes/");
-		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		WebElement mensagaem = driver.findElement(By.id("mensagem"));
 		assertTrue(mensagaem.isDisplayed());
 		assertTrue(mensagaem.getText().equals("Aplicação do curso pm-75-leiloes da Caelum!"));
-		FileUtils.copyFile(file, new File("/tmp/test.png"));
 	}
 	
 	@After

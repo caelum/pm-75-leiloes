@@ -1,16 +1,4 @@
 Testsuite: br.com.caelum.leilao.integracao.BoasVindasTest
-Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 6.408 sec
-------------- Standard Output ---------------
-driver bonito: chromedriverLINUX
-------------- ---------------- ---------------
-------------- Standard Error -----------------
-Started ChromeDriver
-port=27176
-version=23.0.1240.0
-log=/home/Rodrigo/workspace/pm-75-leiloes/chromedriver.log
-[1031/084901:ERROR:ipc_sync_channel.cc(378)] Canceling pending sends
-[1031/084901:ERROR:ipc_sync_channel.cc(378)] Canceling pending sends
-[1031/084901:ERROR:ipc_sync_channel.cc(378)] Canceling pending sends
-------------- ---------------- ---------------
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 4.586 sec
 
-Testcase: deveLocalizarAMensagemDeBoasVindasDoProjeto took 6.391 sec
+Testcase: deveLocalizarAMensagemDeBoasVindasDoProjeto took 4.571 sec

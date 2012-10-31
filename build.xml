@@ -19,7 +19,6 @@
 	</path>
 	
 	<target name="compilar">
-<echo>Compilando</echo>
 		<mkdir dir="${build.dir}/classes/"/>
 		<mkdir dir="${build.dir}/classes-teste/"/>
 		<javac destdir="${build.dir}/classes/" srcdir="src/main/" classpathref="libs.classpath" debug="true" encoding="UTF-8" />
