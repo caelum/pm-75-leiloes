@@ -96,7 +96,7 @@
 	<target name="prepara-servidor-tomcat-7">
 		<delete dir="apache-tomcat-7.0.32"/>
 		<delete dir="apache-tomcat-7.0.32.zip"/>
-		<get dest="." src="http://ftp.unicamp.br/pub/apache/tomcat/tomcat-7/v7.0.32/bin/apache-tomcat-7.0.32.zip"/>
+		<get dest="." src="http://ftp.unicamp.br/pub/apache/tomcat/tomcat-7/v7.0.40/bin/apache-tomcat-7.0.40.zip"/>
 		<unzip dest="." src="apache-tomcat-7.0.32.zip"/>
 		<delete dir="apache-tomcat-7.0.32/conf/server.xml"/>
 		<copy file="server.xml" todir="apache-tomcat-7.0.32/conf/"/>
