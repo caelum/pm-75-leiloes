@@ -67,6 +67,7 @@
 	<target name="relatorio-jacoco" depends="executar-os-testes">
 		<mkdir dir="${build.dir}/jacoco"/>
 		<mkdir dir="${build.dir}/jacoco/report"/>
+		<echo>${basedir}/jacoco.exec</echo>
 			<jacoco:report>
 				<executiondata>
 					<file name="${basedir}/jacoco.exec"/>
