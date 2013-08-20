@@ -1,4 +1,0 @@
-Testsuite: br.com.caelum.leilao.integracao.BoasVindasTest
-Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 4.586 sec
-
-Testcase: deveLocalizarAMensagemDeBoasVindasDoProjeto took 4.571 sec
