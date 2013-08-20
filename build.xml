@@ -70,7 +70,7 @@
 		<echo>${basedir}/jacoco.exec</echo>
 			<jacoco:report>
 				<executiondata>
-					<file name="${basedir}/jacoco.exec"/>
+					<file file="${basedir}/jacoco.exec"/>
 				</executiondata>
 				<structure name="pm-75-leiloes">
 					 <classfiles>
