@@ -67,9 +67,10 @@
 	<target name="relatorio-jacoco" depends="executar-os-testes">
 		<mkdir dir="${build.dir}/jacoco"/>
 		<mkdir dir="${build.dir}/jacoco/report"/>
+		<echo>${basedir}/jacoco.exec</echo>
 			<jacoco:report>
 				<executiondata>
-					<file name="${basedir}/jacoco.exec"/>
+					<file file="${basedir}/jacoco.exec"/>
 				</executiondata>
 				<structure name="pm-75-leiloes">
 					 <classfiles>
@@ -84,7 +85,7 @@
 			</jacoco:report>
 		</target>
 	
-	<property name="apache.tomcat7" value="apache-tomcat-7.0.40"/>
+	<property name="apache.tomcat7" value="apache-tomcat-7.0.42"/>
 	
 	<target name="gera-war" depends="executar-os-testes">
 		<war destfile="${apache.tomcat7}/webapps/pm-75-leiloes.war">
@@ -94,12 +95,12 @@
 	</target>
 
 	<target name="prepara-servidor-tomcat-7">
-		<delete dir="apache-tomcat-7.0.40"/>
-		<delete dir="apache-tomcat-7.0.40.zip"/>
-		<get dest="." src="http://ftp.unicamp.br/pub/apache/tomcat/tomcat-7/v7.0.40/bin/apache-tomcat-7.0.40.zip"/>
-		<unzip dest="." src="apache-tomcat-7.0.40.zip"/>
-		<delete dir="apache-tomcat-7.0.40/conf/server.xml"/>
-		<copy file="server.xml" todir="apache-tomcat-7.0.40/conf/"/>
+		<delete dir="${apache.tomcat7}"/>
+		<delete dir="${apache.tomcat7}.zip"/>
+		<get dest="." src="http://ftp.unicamp.br/pub/apache/tomcat/tomcat-7/v7.0.42/bin/${apache.tomcat7}.zip"/>
+		<unzip dest="." src="${apache.tomcat7}.zip"/>
+		<delete dir="${apache.tomcat7}/conf/server.xml"/>
+		<copy file="server.xml" todir="${apache.tomcat7}/conf/"/>
 	</target>
 	
 	<target name="levanta-servidor-tomcat" depends="derruba-servidor-tomcat,prepara-servidor-tomcat-7, gera-war">
